@@ -26,10 +26,10 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Install Android SDK packages
-        run: |
-          yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: "platform-tools platforms;android-35 build-tools;35.0.0"
 
       - name: Set up Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
@@ -41,7 +41,8 @@ jobs:
         run: gradle --no-daemon assembleDebug
 
       - name: Rename APK
-        run: cp extracted/project/app/build/outputs/apk/debug/app-debug.apk Reliance_Registry_Calculator.apk
+        run: |
+          cp extracted/project/app/build/outputs/apk/debug/app-debug.apk Reliance_Registry_Calculator.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
