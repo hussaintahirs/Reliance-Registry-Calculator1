@@ -14,11 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract Android project
+            - name: Extract Android project
         run: |
           mkdir -p extracted
           ZIP_FILE=$(find . -maxdepth 1 -name 'Reliance_Registry_Calculator_BuildReady*.zip' | head -n 1)
-unzip -q "$ZIP_FILE" -d extracted
+          unzip -q "$ZIP_FILE" -d extracted
 
       - name: Set up Java 17
         uses: actions/setup-java@v5
