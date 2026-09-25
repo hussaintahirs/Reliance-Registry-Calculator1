@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-            - name: Extract Android project
+      - name: Extract Android project
         run: |
           mkdir -p extracted
           ZIP_FILE=$(find . -maxdepth 1 -name 'Reliance_Registry_Calculator_BuildReady*.zip' | head -n 1)
